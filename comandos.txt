@@ -1,0 +1,15 @@
+1. Instalar pacotes necessários
+pip install counterfit-shims-seed-python-dht
+
+2. Rodar counterfit no terminal
+
+3. Criar sensor de umidade
+
+4. Criar sensor de temperatura (número seguinte ao sensor de umidade)
+
+5. Colocar random no sensor
+
+6. No temperature.py importar pacotes necessários
+ex: sensor = DHT("11", 5)
+
+

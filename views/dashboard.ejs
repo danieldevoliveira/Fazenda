@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantações</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+   
+
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      background-attachment: fixed;
+      background-image: url(https://pixelmaze.ca/2005/04/india/day11/tea/10d/1/82369-6.jpg);
+      background-size: cover;
+      background-repeat: repeat;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .menu {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 1em;
+    }
+
+    .menu img {
+      height: 80px;
+    }
+
+    .menu a {
+      display: block;
+      color: #78e215;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 1000;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #4a8212;
+    }
+
+    .content {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      margin-top: 387px;
+      width: 100%;
+      height: 510px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+      padding: 20px;
+      background-color: rgba(30, 37, 48);
+      height: 4000px;
+      margin-left: 50px;
+      width: 1200px;
+      border-radius: 15px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #78e215;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      color: white;
+    }
+
+    .grafic1 {
+    background-color: rgb(48, 60, 82);
+    height: 270px;
+    width: 550px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 400px;
+    margin-left: 310px;
+  }
+
+  .scrollable-table1 {
+      max-height: 200px; /* Set the desired max height for the table */
+      overflow-y: auto;
+      margin-left: -400px;
+      margin-top: 50px;
+    }
+
+    
+  .temp{
+    margin-top: -180px;
+    margin-left: 80px;
+    color: #78e215;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .title{
+    margin-top: 40px;
+    color: #78e215;
+    font-weight: bolder;
+    font-size: 27px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .regiaoName{
+    margin-top: 40px;
+    
+    color: #78e215;
+    font-weight: bolder;
+    font-size: 26px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+
+  thead{
+    background-color: #4a8212;
+    border-radius: 15px;
+  }
+
+  
+  .grafic2 {
+    background-color: rgb(48, 60, 82);
+    height: 320px;
+    width: 700px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 250px;
+    margin-top: -625px;
+  }
+
+  .scrollable-table2 {
+      max-height: 200px; /* Set the desired max height for the table */
+      overflow-y: auto;
+      width: 100%;
+      margin-left: -270px;
+      margin-top: 50px;
+    }
+
+    
+  .temp2{
+    margin-top: -250px;
+    margin-left: 220px;
+    color: #78e215;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+
+  .grafic3 {
+    background-color: rgb(48, 60, 82);
+    height: 320px;
+    width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .temp3{
+    margin-top: -230px;
+    margin-left: 150px;
+    color: #78e215;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px;
+  }
+
+  .nomePlanta{
+    margin-top: 50px;
+    margin-left: -520px;
+    font-weight: bolder;
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .data{
+    margin-left: -520px;
+    font-weight: bolder;
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .situacaoPlanta{
+    margin-left: -520px;
+    font-weight: bolder;
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .restante{
+    margin-right: 350px;
+    margin-left: -350px;
+    font-weight: bolder;
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
+  .grafic4 {
+    background-color: rgb(48, 60, 82);
+    height: 320px;
+    width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 700px;
+    margin-top: -318px;
+  }
+
+  .temp4{
+    color: #78e215;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-left: 35px;
+    margin-top: 350px;
+  }
+
+  .scrollable-table {
+      max-height: 200px; 
+      overflow-y: auto;
+      margin-left: 430px;
+      margin-top: 50px;
+    }
+    
+
+    .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      width: 200px;
+      margin-top: 0;
+    }
+
+    .dropdown-content a {
+      color: #78e215;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #4a8212;
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .content {
+      
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      margin-top: 387px;
+      width: 100%; /* Ajuste a largura conforme necessário */
+      height: 510px; /* Ajuste a altura conforme necessário */
+      padding: 20px; /* Adiciona espaçamento interno */
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+      img{
+        height: 80px;
+      }
+
+      .content img{
+        height: 110px;
+        margin-top: 60px;
+      }
+
+  </style>
+</head>
+
+<body>
+
+<div class="menu">
+  <nav>
+    <img src="https://i.imgur.com/eCgTJyg.png" alt= "Descrição da Imagem">
+    <a href="/index" onclick="changeTab(this)">Home</a>
+    <!-- <a href="/dashboard" onclick="changeTab(this)">Dashboard</a> -->
+    <div class="dropdown" onmouseover="showDropdownContent()" onmouseout="hideDropdownContent()">
+      <a id="regioesTitulo">Dashboard</a>
+      <div class="dropdown-content" id="regioesDropdown">
+        <% for (const regiao of regioes) { %>
+          <a href="/dashboard/<%= regiao.id %>" onclick="changeTab(this)"><%= regiao.nome %></a>
+        <% } %>
+      </div>
+    </div>
+    <a href="/plantacao" onclick="changeTab(this)">Plantações</a>
+    <a href="/cadastroPlantas" onclick="changeTab(this)">Plantas</a>
+  </nav>
+</div>
+
+
+
+  <div class="content">
+    <div class="container">
+
+      <div class="title">
+        <h2>Dashboard Plantações</h2>
+        <hr color="#4a8212">
+      </div>
+        <div class="regiaoId">
+  </div>
+
+      <% var region = regioes.find(function(reg) { return reg.id === parseInt(regiaoId, 10); }); %>
+      <div class="regiaoName">
+        <h3><%= region.nome %></h3>
+      </div>
+
+
+
+
+
+    <div class="grafic1">
+
+      <div class="temp">
+        <h4>Temperaturas (Máx/Mín/Média)</h4>
+            <br>
+      </div>
+
+
+      <div class="scrollable-table1">
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Máxima</th>
+              <th>Mínima</th>
+              <th>Média</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+              <% const filteredTemps = dailyTemperatureData.filter(temp => temp.regiao_id === region.id); %>
+              <% filteredTemps.forEach(temp => { %>
+            <tr>
+              <td><%= new Date(temp.data).toLocaleDateString('pt-BR') %></td>
+              <td><%= temp.max_temperature %>°C</td>
+              <td><%= temp.min_temperature %>°C</td>
+              <td><%= (temp.max_temperature + temp.min_temperature)/2 %>°C</td>
+                
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+
+
+    <div class="grafic2">
+  <div class="temp2">
+    <h3>Histórico de temperaturas</h3>
+  </div>
+
+  <div class="scrollable-table2">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Temperatura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% 
+          const sortedTemperaturas = temperaturas
+            .filter(temp => temp.regiao_id === region.id)
+            .sort((a, b) => new Date(b.data_hora) - new Date(a.data_hora));
+
+          sortedTemperaturas.forEach(temp => { 
+        %>
+          <tr>
+            <td><%= new Date(temp.data_hora).toLocaleDateString('pt-BR') %></td>
+            <td><%= temp.temperatura %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="">
+<ul>
+  <% dashboardData.filter(planta => planta.regiao_id === region.id).forEach((planta, index) => { %>
+    <li>
+      <div class="temp4">
+        <h3>Graus-Dia por Cultura</h3>
+      </div>
+      <div class="scrollable-table">
+  <table border="1">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th><%= `GD ${planta.planta_nome}` %></th>
+    </tr>
+  </thead>
+    <tbody id="chartData<%= index %>">
+    <% let gd_sum = 0; %>
+    <% filteredTemps.sort((a, b) => new Date(b.data) - new Date(a.data)).forEach(temp => { %>
+      <% const tempDate = new Date(temp.data); %>
+      <% const plantaDate = new Date(planta.data_inicial); %>
+      <% const gd = (tempDate < plantaDate) ? 0 : (temp.max_temperature - temp.min_temperature) / 2 - planta.planta_temp_basal; %>
+      <tr>
+        <td><%= new Date(temp.data).toLocaleDateString('pt-BR') %></td>
+        <td><%= parseFloat(gd).toFixed(2) %></td>
+        <td></td>
+        <% gd_sum += gd; %>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+      </div>
+  <canvas id="barChart<%= region.id %>-<%= index %>" width="400" height="200"></canvas>
+  
+  <br>
+
+<div class="grafic3">
+  <div class="temp3">
+    <h4>Informações sobre a Cultura</h4>
+  </div>
+
+      <div class="resumoPlantas">
+        <div class="nomePlanta">
+          <h3>Cultura: <%= planta.planta_nome %></h3> 
+        </div>
+
+        <div class="data">
+           <h3>Plantado em: <%= new Date(planta.data_inicial).toLocaleDateString('pt-BR') %></h3>
+        </div>
+        
+        <div class="situacaoPlanta">
+          <h3>Situação: <%= parseFloat(gd_sum).toFixed(2) %> / <%= planta.planta_gd %> GD</h3>
+        </div>
+        
+        <div class="restante">
+          <h3>Restante: <%=planta.planta_gd - gd_sum %> GD </h3>
+        </div>
+
+      </div>
+    </div>
+  <div class="grafic4">
+      <canvas id="myChart<%= region.id %>-<%= index %>"></canvas>
+    </div>
+    
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the data from EJS template
+    var dates = [];
+    var gdValues = [];
+
+    <% filteredTemps.forEach(temp => { %>
+      dates.push('<%= new Date(temp.data).toLocaleDateString('pt-BR') %>');
+      gdValues.push(parseFloat(<%= (temp.max_temperature - temp.min_temperature) / 2 - planta.planta_temp_basal %>).toFixed(2));
+    <% }); %>
+
+      // Reverse the arrays
+    dates.reverse();
+    gdValues.reverse();
+
+
+    // Create a bar chart
+    var ctx = document.getElementById('barChart<%= region.id %>-<%= index %>').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: dates,
+        datasets: [{
+          label: '<%= `GD ${planta.planta_nome}` %>',
+          data: gdValues,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'category',
+            labels: dates,
+            title: {
+              display: true,
+              text: 'Data'
+            }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: '<%= `GD ${planta.planta_nome}` %>'
+            }
+          }
+        }
+      }
+    });
+  });
+  </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const ctx<%= index %> = document.getElementById('myChart<%= region.id %>-<%= index %>').getContext('2d');
+      
+      const value1<%= index %> = <%= gd_sum %>; // Value from planta.planta_gd
+      const value2<%= index %> =  <%=planta.planta_gd - gd_sum %>; // Value from gd_sum
+
+      const myChart<%= index %> = new Chart(ctx<%= index %>, {
+        type: 'pie',
+        data: {
+          labels: ['Restante', 'Situação'],
+          datasets: [{
+            label: 'Colheita',
+            data: [value2<%= index %>, value1<%= index %>],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+    </script>
+  </li>
+  <hr color= "#303c52">  
+    <% }); %>
+
+  </ul>
+
+  <hr color="#4a8212">
+
+  </div>
+  </div>
+</body>
+</html>
