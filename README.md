@@ -1,4 +1,4 @@
-Projeto para uma fazenda de agricultura usando sensores apara indicar quando regar e quando colher as culturas da fazenda.
+Projeto para uma fazenda de agricultura usando sensores para indicar quando regar e quando colher as culturas da fazenda.
 
 
 
